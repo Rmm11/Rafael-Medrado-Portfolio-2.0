@@ -5,7 +5,6 @@ import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 
 import { useParallaxSlider } from '@/hooks';
-import { randomId } from '@/utils';
 
 /** @param {import('react').PropsWithChildren<unknown> & {repeat: number; baseVelocity: number;}} */
 export function ParallaxSlider({ children, repeat = 2, baseVelocity }) {
@@ -14,10 +13,9 @@ export function ParallaxSlider({ children, repeat = 2, baseVelocity }) {
   return (
     <div className='flex flex-nowrap overflow-hidden whitespace-nowrap'>
       <motion.div style={{ x }}>
-        {Array.from({ length: repeat }, () => {
-          const id = randomId();
-          return <Fragment key={id}>{children}</Fragment>;
-        })}
+        {Array.from({ length: repeat }, (_, index) => (
+          <Fragment key={index}>{children}</Fragment>
+        ))}
       </motion.div>
     </div>
   );

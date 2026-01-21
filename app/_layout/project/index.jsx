@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 
 import { projectOptions } from '@/data';
 import { useProjectSlider } from '@/hooks';
-import { randomId } from '@/utils';
 
 import { ProjectSlider } from './slider';
 
@@ -17,13 +16,11 @@ export function Project() {
     useProjectSlider(containerRef);
 
   const firstSlider = projectOptions.first.map(({ type, source }) => {
-    const id = randomId();
-    return <ProjectSlider key={id} type={type} source={source} />;
+    return <ProjectSlider key={source} type={type} source={source} />;
   });
 
   const secondSlider = projectOptions.second.map(({ type, source }) => {
-    const id = randomId();
-    return <ProjectSlider key={id} type={type} source={source} />;
+    return <ProjectSlider key={source} type={type} source={source} />;
   });
 
   return (
